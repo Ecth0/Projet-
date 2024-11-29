@@ -75,3 +75,7 @@ epreuve_math_equation()
 # Liste des épreuves de mathématiques 
 epreuves_de_maths=[epreuve_math_factorielle,epreuve_roulette_mathematique,epreuve_math_equation]
 #=============================================================================================
+def epreuve_math():
+    epreuve=random.choice(epreuves_de_maths)
+    return epreuve()
+epreuve_math()
