@@ -21,7 +21,7 @@ def epreuve_math_factorielle():
     else:
         return False
 
-# Fonction de la roulette 
+# Fonction de la roulette ==================================================================================
 def epreuve_roulette_mathematique():
     a=random.randint(1,20)
     b=random.randint(1,20)
@@ -48,6 +48,30 @@ def epreuve_roulette_mathematique():
         return True
     else:
         return False
+#==================================================================================================
+def lineaire() :
+    import random
+    a=random.randint(0,10)
+    b=random.randint(0,10)
 
-# Liste des épreuves de mathématiques
-epreuves_de_maths=[epreuve_math_factorielle,epreuve_roulette_mathematique]
+
+    x=-b/a
+    return(a,b,x)
+
+
+def epreuve_math_equation() :
+    a,b,x=lineaire()
+    print ("Épreuve de Mahématiques: Résoudre l'équation ", a,"x +",b ,"= 0.")
+    res=float(input("Quelle est la valeur de x"))
+    if res==x :
+        print ("Correct! Vous gagnez une clé.")
+        return True
+    else    :
+        return False
+
+
+epreuve_math_equation()
+
+# Liste des épreuves de mathématiques 
+epreuves_de_maths=[epreuve_math_factorielle,epreuve_roulette_mathematique,epreuve_math_equation]
+#=============================================================================================
