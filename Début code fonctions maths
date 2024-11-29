@@ -1,0 +1,53 @@
+Voici le code du fichier epreuves_mathématiques.py qui contient 3 fonctions différentes:
+
+# Fonction de la factorielle
+def factorielle(n):
+    i=n
+    factorielle=1
+    while i>0:
+        factorielle*=i
+        i=i-1
+    return factorielle
+
+import random
+def epreuve_math_factorielle():
+    n=random.randint(1,10)
+    print("Épreuve de Mathématiques: Calculer la factorielle de ",n)
+    reponsefactorielle=int(input())
+    print("Votre réponse: ",reponsefactorielle)
+    if reponsefactorielle==factorielle(n):
+        print("Correct! Vous gagnez une clé.")
+        return True
+    else:
+        return False
+
+# Fonction de la roulette 
+def epreuve_roulette_mathematique():
+    a=random.randint(1,20)
+    b=random.randint(1,20)
+    c=random.randint(1,20)
+    d=random.randint(1,20)
+    e=random.randint(1,20)
+    operations=["addition","soustraction","multiplication"]
+    operation=random.choice(operations)
+    nombreroulette=[a,b,c,d,e]
+    print("Calculez le résultat en combinant ces nombres",a,b,c,d,e,"avec une",operation)
+    res=int(input())
+    print("Votre résultat est:",res)
+    if operation=="addition":
+        op="+"
+        total=a+b+c+d+e
+    elif operation=="soustraction":
+        op="-"
+        total=a-b-c-d-e
+    elif operation=="multiplication":
+        op="*"
+        total=a*b*c*d*e
+    if res==total:
+        print("Bonne réponse! Vous avez gagné une clé.")
+        return True
+    else:
+        return False
+
+# Liste des épreuves de mathématiques
+epreuves_de_maths=[epreuve_math_factorielle,epreuve_roulette_mathematique]
