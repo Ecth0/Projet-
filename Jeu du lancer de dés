@@ -1,0 +1,33 @@
+import random
+import time
+def jeu_lance_des():
+    for nb_essais in range(0,3):
+        print("Lancez les dés en appuyant sur 'Entrée'")
+        saisie=input()
+        if saisie=="":
+            a = random.randint(1, 6)
+            b = random.randint(1, 6)
+            des_joueur = (a, b)
+            time.sleep(1)
+            print(des_joueur)
+            if (a or b)==6:
+                print("Vous remportez la partie et la clé.")
+                return True
+            if nb_essais<1:
+                print("Il vous reste", 3 - nb_essais - 1, "essais")
+            else:
+                print("Il vous reste un essai")
+            time.sleep(1)
+            print("Au tour du maître du jeu")
+            c = random.randint(1, 6)
+            d = random.randint(1, 6)
+            des_maitre = (c, d)
+            time.sleep(1)
+            print(des_maitre)
+            if 6 in des_maitre:
+                print("Le maître du jeu remporte la partie et vous perdez la clé.")
+                return False
+            time.sleep(1)
+    print("Après trois essais, aucun des joueurs n'a gagné, c'est donc un match nul.")
+
+jeu_lance_des()
