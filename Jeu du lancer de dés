@@ -10,7 +10,7 @@ def jeu_lance_des():
             des_joueur = (a, b)
             time.sleep(1)
             print(des_joueur)
-            if (a or b)==6:
+            if 6 in des_joueur:
                 print("Vous remportez la partie et la clé.")
                 return True
             if nb_essais<1:
