@@ -31,3 +31,26 @@ def jeu_lance_des():
     print("Après trois essais, aucun des joueurs n'a gagné, c'est donc un match nul.")
 
 jeu_lance_des()
+#=========================================================================================================
+def bonneteau() :
+    import random
+    L = ["A", "B", "C"]
+
+
+    n=2
+    clef=random.choice(L)
+    print("Sous quel bonneteau se trouve la clef ? vous avez 2 tentatives")
+    t=str(input("Choisissez un bonneteau A,B ou C"))
+
+    while t!=clef:
+        n=n-1
+        if n == 0:
+            print("Vous avez perdu !")
+            break
+        print("La clef ne se trouve pas ici, il vous reste", n, "tentatives")
+
+        t=str(input("Choisissez un autre bonneteau"))
+
+
+    if t==clef:
+        print("Bravo vous avez obtenu la clef")
