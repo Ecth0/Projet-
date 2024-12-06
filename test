@@ -1,0 +1,44 @@
+def affiche_batonnets(n):
+    listebat = []
+    listebat.append(n * "|")
+    print("Bâtonnets restants:",listebat[0])
+
+def joueur_retrait(n):
+        print("Tour du joueur.")
+        retrait = int(input("Combien de bâtonnets voulez-vous retirer (1, 2 ou 3) ?"))
+        return retrait
+def maitre_retrait(n):
+    if n % 4 == 1:
+        retrait = 1
+    elif n % 4 == 2:
+        retrait = 2
+    else:
+        retrait = 3
+    return retrait
+
+def jeu():
+    n=19
+    tour=True
+    while n!=0:
+        affiche_batonnets(n)
+        if tour == True:
+            retrait=joueur_retrait(n)
+            n = n - retrait
+            affiche_batonnets(n)
+            tour=False
+        else:
+            retrait=maitre_retrait(n)
+            n = n - retrait
+            print("Le maitre du jeu retire", retrait, "bâtonnets.")
+            affiche_batonnets(n)
+            tour=True
+        if n==0 and tour==True:
+            print("Vous avez retiré le dernier bâtonnet, vous perdez la clé.")
+        elif n==0 and tour==False:
+            print("Le maître du jeu a retiré le dernier bâtonnet. Le joueur gagne !")
+        if tour==False:
+            tour=True
+        else:
+            tour=False
+
+jeu()
