@@ -42,3 +42,137 @@ def jeu():
             tour=False
 
 jeu()
+
+
+import random
+def grille_vide():
+    grillevide=[]
+    for i in range(3):
+        L =[]
+        for j in range(3):
+            L.append(" ")
+        grillevide.append(L)
+    return grillevide
+
+
+def suiv(joueur):
+    if joueur==1:
+        return joueur-1
+    else:
+        return 1
+
+ac="abc"
+def affiche_grille(grille,message):
+    #print(message)
+    for i in range(3):
+        for j in range(3):
+            print("|",grille[i][j],end=" ")
+            if j==2:
+                print("|",end="")
+        print("")
+    print("-------------")
+
+def demande_position():
+    #pos_valides=["1,1","1,2","1,3","2,1","2,2","2,3","3,1","3,2","3,3"]
+    a,b,c=input("Entrez la position (ligne,colonne) entre 1 et 3 (ex: 1,2) :")
+    while True:
+        if not (1 <= int(a) <= 3) or not (1 <= int(c) <= 3) or b != ",":
+            a,b,c = input("Entrez la position (ligne,colonne) entre 1 et 3 (ex: 1,2) :")
+        else:
+            return a,b,c
+
+
+
+
+def init():
+    grillejoueur=grille_vide()
+    print("Positionnez vos bateaux :")
+    print("Bateau 1")
+    pos1l="0"
+    pos1c="0"
+    _='0'
+    while (int(pos1l)<1 or int(pos1l)>3)or (int(pos1c)<1 or int(pos1c)>3)or _!="," :
+        pos1l,_,pos1c=input(("Entrez la position (ligne,colonne) entre 1 et 3 (ex: 1,2)"))
+    grillejoueur[int(pos1l)-1][int(pos1c)-1]="B"
+    print("Bateau 2")
+    pos2l = "0"
+    pos2c = "0"
+    _ = '0'
+    while (int(pos2l) < 1 or int(pos2l) > 3) or (int(pos2c) < 1 or int(pos2c) > 3) or _ != "," or (pos2l==pos1l and pos2c==pos1c):
+        pos2l,_,pos2c=input(("Entrez la position (ligne,colonne) entre 1 et 3 (ex: 1,2)"))
+    grillejoueur[int(pos2l)-1][int(pos2c)-1]="B"
+    print("Découvrez votre grille de jeu avec vos bateaux :")
+    affiche_grille(grillejoueur, _)
+    return grillejoueur
+
+_="a"
+def tour(joueur,grille_tirs_joueur,grilleadversaire,tirs_possible):
+    if joueur==0:
+        print("C'est à votre tour de faire feu !")
+        #grilleadversaire=grillemaitre
+        print("Rappel de l'historique des tirs que vous avez effectués :")
+        affiche_grille(grille_tirs_joueur,_)
+        l="0"
+        a="0"
+        c="0"
+        while (int(l) < 1 or int(l) > 3) or (int(c) < 1 or int(c) > 3) or a != ",":
+            l,a,c=input("Entrez la position (ligne,colonne) entre 1 et 3 (ex: 1,2) :")
+        if grilleadversaire[int(l)-1][int(c)-1]=="B":
+            print("Touché coulé")
+            grille_tirs_joueur[int(l)-1][int(c)-1]="x"
+        else:
+            print("Dans l'eau...")
+            grille_tirs_joueur[int(l)-1][int(c)-1]="."
+
+    elif joueur==1:
+        print("C'est le tour du maître du jeu :")
+        idx=random.randint(0,len(tirs_possible)-1)
+        posit = tirs_possible[idx]
+        l2,c2=posit
+        print("Le maître du jeu tire en position :",l2,",",c2)
+        if grilleadversaire[l2-1][c2-1]=="B":
+            print("Touché coulé !")
+            grille_tirs_joueur[l2-1][c2-1]="x"
+        else:
+            print("Dans l'eau...")
+            grille_tirs_joueur[l2-1][c2-1]="."
+        del(tirs_possible[idx])
+
+def gagne(grille_tirs):
+    compteur=0
+    for i in range(len(grille_tirs)):
+        for j in range(len(grille_tirs)):
+            if grille_tirs[i][j]=="x":
+                compteur+=1
+    if compteur==2:
+        return True
+    return False
+def jeu_bataille_navale():
+    a=False
+    print("Chaque joueur doit placer 2 bateaux sur une grille de 3x3.")
+    print("Les bateaux sont représentés par 'B' et les tirs manqués par '.'. ")
+    print("Les bateaux coulés sont marqués par 'x'.")
+    grillejoueur= init()
+    grillemaitre = grille_vide()
+    grille_tirs_joueur= grille_vide()
+    grille_tirs_maitre= grille_vide()
+    grillemaitre[random.randint(0, 2)][random.randint(0, 2)] = "B"
+    grillemaitre[random.randint(0, 2)][random.randint(0, 2)] = "B"
+    joueur=1
+    tirs_possible = [(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3), (3, 1), (3, 2), (3, 3)]
+    while a==False:
+        if suiv(joueur)==0:
+            tour(0,grille_tirs_joueur,grillemaitre,tirs_possible)
+            joueur=0
+            a=gagne(grille_tirs_joueur)
+        else:
+            tour(1,grille_tirs_maitre,grillejoueur,tirs_possible)
+            joueur=1
+            a=gagne(grille_tirs_maitre)
+    if gagne(grille_tirs_maitre)==True:
+        print("Le maitre remporte la partie.","Vous perdez la clé")
+        return False
+    else:
+        print("Vous gagnez la clé")
+        return True
+
