@@ -5,8 +5,9 @@ with open('data/enigmesPF.json', 'r', encoding='utf-8') as f:
     data=json.load(f)
 
     enigmeschoisie=random.choice(data)
+    print("Voici l'énigme du père Fouras :")
     print(enigmeschoisie["question"])
-    print(enigmeschoisie["numero"]) # a retirer
+  
 
     n=3
 
@@ -19,3 +20,4 @@ with open('data/enigmesPF.json', 'r', encoding='utf-8') as f:
             print("Perdu")
         else :
           print ("Non essayez encore , il vous reste",n,"essais ")
+
