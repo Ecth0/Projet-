@@ -1,6 +1,6 @@
 Voici le code du fichier epreuves_mathématiques.py qui contient 3 fonctions différentes:
 
-# Fonction de la factorielle
+# Epreuve de la factorielle
 def factorielle(n):
     i=n
     factorielle=1
@@ -12,7 +12,7 @@ def factorielle(n):
 import random
 def epreuve_math_factorielle():
     n=random.randint(1,10)
-    print("Épreuve de Mathématiques: Calculer la factorielle de ",n)
+    print("Épreuve de Mathématiques: Calculer la factorielle de",n)
     reponsefactorielle=int(input())
     print("Votre réponse: ",reponsefactorielle)
     if reponsefactorielle==factorielle(n):
@@ -21,7 +21,7 @@ def epreuve_math_factorielle():
     else:
         return False
 
-# Fonction de la roulette ==================================================================================
+
 def epreuve_roulette_mathematique():
     a=random.randint(1,20)
     b=random.randint(1,20)
@@ -31,7 +31,7 @@ def epreuve_roulette_mathematique():
     operations=["addition","soustraction","multiplication"]
     operation=random.choice(operations)
     nombreroulette=[a,b,c,d,e]
-    print("Calculez le résultat en combinant ces nombres",a,b,c,d,e,"avec une",operation)
+    print("Calculez le résultat en combinant ces nombres:",a,b,c,d,e,"avec une",operation)
     res=int(input())
     print("Votre résultat est:",res)
     if operation=="addition":
@@ -48,11 +48,10 @@ def epreuve_roulette_mathematique():
         return True
     else:
         return False
-#==================================================================================================
 def lineaire() :
     import random
-    a=random.randint(0,10)
-    b=random.randint(0,10)
+    a=random.randint(1,10)
+    b=random.randint(1,10)
 
 
     x=-b/a
@@ -62,7 +61,7 @@ def lineaire() :
 def epreuve_math_equation() :
     a,b,x=lineaire()
     print ("Épreuve de Mahématiques: Résoudre l'équation ", a,"x +",b ,"= 0.")
-    res=float(input("Quelle est la valeur de x"))
+    res=float(input("Quelle est la valeur de x? :"))
     if res==x :
         print ("Correct! Vous gagnez une clé.")
         return True
@@ -70,12 +69,9 @@ def epreuve_math_equation() :
         return False
 
 
-epreuve_math_equation()
 
-# Liste des épreuves de mathématiques 
+# Liste des épreuves de mathématiques
 epreuves_de_maths=[epreuve_math_factorielle,epreuve_roulette_mathematique,epreuve_math_equation]
-#=============================================================================================
 def epreuve_math():
     epreuve=random.choice(epreuves_de_maths)
     return epreuve()
-epreuve_math()
